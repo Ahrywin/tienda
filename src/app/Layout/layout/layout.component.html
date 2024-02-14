@@ -1,0 +1,35 @@
+<div class="flex">
+  <!-- Navbar -->
+  <div class="w-64 bg-blue-500 h-screen">
+    <app-nav
+    (showUserTable)="toggleComponent('users')"
+    (showUserTienda)="toggleComponent('tienda')"
+    (showUserArticulos)="toggleComponent('articulos')"
+    ></app-nav>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="flex-1 p-8">
+    <!-- Contenido dinámico (puede ser la tabla de usuarios u otro contenido) -->
+    <div *ngIf="activeTable">
+      <button (click)="abrirModal()" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Agregar Cliente</button>
+
+      <app-user-table></app-user-table>
+
+      <clientForm *ngIf="clientForm"
+        (openCloseForm)="clientForm"
+       >
+      </clientForm>
+
+
+
+    </div>
+    <div *ngIf="activateTienda">
+      <app-tiendas-table></app-tiendas-table>
+    </div>
+    <div *ngIf="activateArticulos">
+      <app-article-table></app-article-table>
+    </div>
+  </div>
+</div>
+
